@@ -30,24 +30,12 @@ public class HomePage {
     // Префикс ID элемента текста из секции "Вопросы о важном"
     public static final String IMPORTANT_ANSWER_PREFIX = "accordion__panel-";
 
-    // Локатор кнопки "Заказать" на верху страницы
-    public static final By orderButtonHeaderLocator = By.xpath(".//button[@class='Button_Button__ra12g']");
-
-    // Локатор кнопки "Заказать" в низу страницы
-    public static final By orderButtonBottomLocator = By.xpath(".//button[@class='Button_Button__ra12g Button_Middle__1CSJM']");
-
     // Локатор секции "Вопросы о важном"
     public static final By importantQuestionsSectionLocator = By.xpath(".//div[text()='Вопросы о важном']");
 
     // Действие открытия основной страницы
     public void openPage() {
         driver.get(BASE_URL);
-    }
-
-    // Действие скроллинга до кнопки "Заказать" в низу страницы
-    public void scrollToBottomOrderButton() {
-        WebElement orderButtonBottom = driver.findElement(orderButtonBottomLocator);
-        scrollToPageElement(orderButtonBottom);
     }
 
     // Действие скроллинга до секции "Вопросы о важном"
@@ -59,16 +47,6 @@ public class HomePage {
     // Действие скроллинга по найденному элементу, вынесено для читабельности прочих методов
     public void scrollToPageElement(WebElement pageElement) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", pageElement);
-    }
-
-    // Действие нажатия на кнопку "Заказать" на верху страницы
-    public void clickToOrderButtonHeader() {
-        driver.findElement(orderButtonHeaderLocator).click();
-    }
-
-    // Действие нажатия на кнопку "Заказать" в низу страницы
-    public void clickToOrderButtonBottom() {
-        driver.findElement(orderButtonBottomLocator).click();
     }
 
     // Действие нажатия на кнопку раскрытия вопроса в секции "Вопросы о важном" (зависит от порядка вопросов)

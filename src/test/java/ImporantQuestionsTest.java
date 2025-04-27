@@ -7,7 +7,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 
 import static org.junit.Assert.assertEquals;
 
@@ -26,6 +25,7 @@ public class ImporantQuestionsTest {
     @Before
     public void beforeTest() {
         WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
     }
 
     @Parameterized.Parameters()
@@ -44,7 +44,6 @@ public class ImporantQuestionsTest {
     }
     @Test
     public void checkImportantQuestionsHaveCorrectAnswers() {
-        driver = new ChromeDriver();
         // Открываем основную страницу
         HomePage homePage = new HomePage(driver);
         homePage.openPage();
