@@ -43,7 +43,7 @@ public class ImporantQuestionsTest {
         };
     }
     @Test
-    public void checkImportantQuestionsHaveCorrectAnswers() {
+    public void checkImportantQuestionsHaveCorrectAnswersTest() {
         // Открываем основную страницу
         HomePage homePage = new HomePage(driver);
         homePage.openPage();

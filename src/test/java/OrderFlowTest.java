@@ -1,4 +1,5 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
+import model.HomePage;
 import model.OrderPage;
 import org.junit.After;
 import org.junit.Before;
@@ -69,20 +70,21 @@ public class OrderFlowTest {
     }
 
     @Test
-    public void checkFlowWithHeaderOrderButton() {
-        // Открываем страницу заказа
+    public void checkFlowWithHeaderOrderButtonTest() {
+        HomePage homePage = new HomePage(driver);
         OrderPage orderPage = new OrderPage(driver);
-        orderPage.openPage();
+        // Открываем основную страницу
+        homePage.openPage();
+        // Скрываем уведомление о куках, чтобы без ошибок нажать на кнопку "Далее"
+        homePage.clickToHideCookiesButton();
         // Нажимаем кнопку "Заказать" на верху страницы
-        orderPage.clickToOrderButtonHeader();
+        homePage.clickToOrderButtonHeader();
         // Заполняем данные на первом экране
         orderPage.setName(name);
         orderPage.setSurname(surname);
         orderPage.setDeliveryAddress(deliveryAddress);
         orderPage.setMetroStation(station);
         orderPage.setPhoneNumber(phoneNumber);
-        // Скрываем уведомление о куках, чтобы без ошибок нажать на кнопку "Далее"
-        orderPage.clickToHideCookiesButton();
         // Данные заполнены, нажимаем "Далее"
         orderPage.clickNextButton();
         // Заполняем второй экран с данными об аренде
@@ -99,22 +101,23 @@ public class OrderFlowTest {
     }
 
     @Test
-    public void checkFlowWithBottomOrderButton() {
-        // Открываем страницу заказа
+    public void checkFlowWithBottomOrderButtonTest() {
+        HomePage homePage = new HomePage(driver);
         OrderPage orderPage = new OrderPage(driver);
-        orderPage.openPage();
+        // Открываем основную страницу
+        homePage.openPage();
+        // Скрываем уведомление о куках, чтобы без ошибок нажать на кнопку "Далее"
+        homePage.clickToHideCookiesButton();
         // Скроллим до кнопки "Заказать" в низу страницы
-        orderPage.scrollToBottomOrderButton();
+        homePage.scrollToBottomOrderButton();
         // Нажимаем кнопку "Заказать после скролла
-        orderPage.clickToOrderButtonBottom();
+        homePage.clickToOrderButtonBottom();
         // Заполняем данные на первом экране
         orderPage.setName(name);
         orderPage.setSurname(surname);
         orderPage.setDeliveryAddress(deliveryAddress);
         orderPage.setMetroStation(station);
         orderPage.setPhoneNumber(phoneNumber);
-        // Скрываем уведомление о куках, чтобы без ошибок нажать на кнопку "Далее"
-        orderPage.clickToHideCookiesButton();
         // Данные заполнены, нажимаем "Далее"
         orderPage.clickNextButton();
         // Заполняем второй экран с данными об аренде

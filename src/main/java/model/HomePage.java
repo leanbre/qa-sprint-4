@@ -31,7 +31,16 @@ public class HomePage {
     public static final String IMPORTANT_ANSWER_PREFIX = "accordion__panel-";
 
     // Локатор секции "Вопросы о важном"
-    public static final By importantQuestionsSectionLocator = By.xpath(".//div[text()='Вопросы о важном']");
+    public static final By IMPORTANT_QUESTIONS_SECTION_LOCATOR = By.xpath(".//div[text()='Вопросы о важном']");
+
+    // Локатор кнопки скрытия информации о куках
+    private final By COOKIE_BUTTON = By.id("rcc-confirm-button");
+
+    // Локатор кнопки "Заказать" на верху страницы
+    private static final By ORDER_BUTTON_HEADER_LOCATOR = By.xpath(".//button[@class='Button_Button__ra12g']");
+
+    // Локатор кнопки "Заказать" в низу страницы
+    private static final By ORDER_BUTTON_BOTTOM_LOCATOR = By.xpath(".//button[@class='Button_Button__ra12g Button_Middle__1CSJM']");
 
     // Действие открытия основной страницы
     public void openPage() {
@@ -40,7 +49,7 @@ public class HomePage {
 
     // Действие скроллинга до секции "Вопросы о важном"
     public void scrollToImportantQuestionsSection() {
-        WebElement importantQuestionsSection = driver.findElement(importantQuestionsSectionLocator);
+        WebElement importantQuestionsSection = driver.findElement(IMPORTANT_QUESTIONS_SECTION_LOCATOR);
         scrollToPageElement(importantQuestionsSection);
     }
 
@@ -67,5 +76,26 @@ public class HomePage {
     public String getImportantAnswerText(int questionNumber) {
         By importantAnswerLocator = By.id(IMPORTANT_ANSWER_PREFIX + questionNumber);
         return driver.findElement(importantAnswerLocator).getText();
+    }
+
+    // Действие нажатия на кнопку "Заказать" на верху страницы
+    public void clickToOrderButtonHeader() {
+        driver.findElement(ORDER_BUTTON_HEADER_LOCATOR).click();
+    }
+
+    // Действие нажатия на кнопку "Заказать" в низу страницы
+    public void clickToOrderButtonBottom() {
+        driver.findElement(ORDER_BUTTON_BOTTOM_LOCATOR).click();
+    }
+
+    // Действие скроллинга до кнопки "Заказать" в низу страницы
+    public void scrollToBottomOrderButton() {
+        WebElement orderButtonBottom = driver.findElement(ORDER_BUTTON_BOTTOM_LOCATOR);
+        scrollToPageElement(orderButtonBottom);
+    }
+
+    // Действие скрытия плашки об использовании кук, она загораживает целевую кнопку
+    public void clickToHideCookiesButton() {
+        driver.findElement(COOKIE_BUTTON).click();
     }
 }
